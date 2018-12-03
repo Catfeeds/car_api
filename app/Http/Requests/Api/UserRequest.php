@@ -13,12 +13,26 @@ class UserRequest extends Request
      */
     public function rules()
     {
-        return [
-            'name'=>'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name',
-            'password'=>'required|string|min:6',
-            'verification_key' => 'required|string',
-            'verification_code' => 'required|string',
-        ];
+        switch($this->method()){
+            case 'POST':
+                return [
+                    'name'=>'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name',
+                    'password'=>'required|string|min:6',
+                    'verification_key' => 'required|string',
+                    'verification_code' => 'required|string',
+                ];
+            break;
+
+            case 'PATCH':
+                return [
+                    'name'=>'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name',
+                    'username'=>'required',
+                    'id_number'=>'required|regex:/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$/',
+                    'address'=>'required'
+                ]    
+            break;
+        }
+        
     }
 
     public function attributes()
@@ -35,7 +49,11 @@ class UserRequest extends Request
             'name.unique'=>'用户名已存在',
             'verification_code.require'=>'请填写手机验证码',
             'password.required'=>'请填写密码',
-            'password.min'=>'请最少输入6位密码'
+            'password.min'=>'请最少输入6位密码',
+            'address.required'=>'地址不能为空',
+            'username.required'=>'姓名不能为空',
+            'id_number.required'=>'身份证号不能为空',
+            'id_number.regex'=>'身份证号格式不正确'
         ];
     }
 }

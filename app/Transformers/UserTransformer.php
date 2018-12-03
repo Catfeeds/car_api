@@ -12,7 +12,10 @@ class UserTransformer extends TransformerAbstract
         return [
             'id' => $user->id,
             'name' => $user->name,
-            'phone'=>$user->phone
+            'phone'=>$user->phone,
+            'username'=>$user->username,
+            'id_number'=>$user->id_number,
+            'address'=>$user->address
         ];
     }
 }

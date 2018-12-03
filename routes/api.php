@@ -67,6 +67,9 @@ $api->version('v1', [
     		//用户信息
     		$api->get('user','UsersController@show')
     			->name('api.user.show');
+            //用户修改信息
+            $api->patch('user','UsersController@update')
+                ->name('api.user.update');
     	});
     });
     

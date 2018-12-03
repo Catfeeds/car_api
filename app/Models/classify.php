@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class classify extends Model
 {
-    //
+    public function products()
+    {
+    	return $this->hasMany(Product::class);
+    }
 }
