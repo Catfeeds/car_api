@@ -11,5 +11,7 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index');
-
+    $router->resource('/banner',BannersController::class);
+    $router->resource('/classify',ClassifiesController::class);
+    $router->resource('/shop',ShopsController::class);
 });
