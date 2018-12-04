@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductSku extends Model
 {
+	protected $fillable=['color','configuration','style','foreign_price','rate','price','is_sale','product_id'];
+    
+
     public function product()
     {
         return $this->belongsTo(Product::class);

@@ -51,6 +51,6 @@ class UsersController extends Controller
         $user=$this->user();
         $attributes = $request->only(['name', 'username', 'id_number','address']);
         $user->update($attributes);
-        return $this->response->item($user, new UserTransformer());
+        return $this->response->item($user, new UserTransformer())->setStatusCode(200);
     }
 }

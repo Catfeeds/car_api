@@ -61,6 +61,14 @@ $api->version('v1', [
     		->name('api.shops.index');
     	$api->get('shops/{shop}','ShopsController@show')
     		->name('api.shops.show');
+        //商品列表
+        $api->get('products','ProductsController@index')
+            ->name('api.products.index');
+        $api->get('products/{product}','ProductsController@show')
+            ->name('api.products.show');
+        //热门商品
+        $api->get('hot','ProductsController@hot')
+            ->name('api.products.hot');
 
     	//登陆可访问
     	$api->group(['middleware' => 'api.auth'], function($api) {
@@ -68,8 +76,17 @@ $api->version('v1', [
     		$api->get('user','UsersController@show')
     			->name('api.user.show');
             //用户修改信息
-            $api->patch('user','UsersController@update')
+            $api->PUT('user_info','UsersController@update')
                 ->name('api.user.update');
+            //购物车列表
+            $api->get('carts','CartController@index')
+                ->name('api.carts.index');
+            //加入购物车
+            $api->post('carts','CartController@store')
+                ->name('api.carts.store');
+            //删除购物车数据
+            $api->delete('carts','CartController@destory')
+                ->name('api.carts.destory');
     	});
     });
     

@@ -173,9 +173,11 @@ class ProductsController extends Controller
         $form->switch('is_hot', '是否热卖')->default(0);
 
         $form->hasMany('skus', 'SKU 列表', function (Form\NestedForm $form) {
-            $form->text('title', '规格')->rules('required');
+            $form->text('color', '颜色')->rules('required');
+            $form->text('configuration', '配置')->rules('required');
+            $form->text('style', '款型')->rules('required');
             $form->currency('price', '单价')->symbol('￥')->rules('required|numeric|min:0.01');
-            $form->currency('foreign_price', '国外价格')->symbol('￥')->rules('numeric|min:0.01')->help('没有可不填写');
+            $form->currency('foreign_price', '国外价格')->symbol('$')->help('没有可不填写');
             $form->text('rate','汇率')->help('没有可不填写');
             $form->switch('is_sale', '是否上架')->rules('required');
         });
@@ -204,7 +206,9 @@ class ProductsController extends Controller
             $footer->disableCreatingCheck();
 
         });
-
+        $form->saving(function (Form $form) {
+            $form->model()->price = collect($form->input('skus'))->where(Form::REMOVE_FLAG_NAME, 0)->min('price') ?: 0;
+        });
         return $form;
     }
 }
