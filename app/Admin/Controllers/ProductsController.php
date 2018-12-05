@@ -179,7 +179,9 @@ class ProductsController extends Controller
             $form->currency('price', '单价')->symbol('￥')->rules('required|numeric|min:0.01');
             $form->currency('foreign_price', '国外价格')->symbol('$')->help('没有可不填写');
             $form->text('rate','汇率')->help('没有可不填写');
-            $form->switch('is_sale', '是否上架')->rules('required');
+            $form->switch('is_sale', '是否上架')->default(0)->rules('required');
+            $form->switch('is_discount','是否为折扣商品')->default(0);
+            $form->currency('discount_price', '单价')->symbol('￥')->help('非折扣商品可不填写');
         });
 
 

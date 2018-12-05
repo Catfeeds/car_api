@@ -41,6 +41,11 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
+    public function logistics()
+    {
+        return $this->hasMany(Logistics::class);
+    }
+
 
     public static function findAvailableNo()
     {

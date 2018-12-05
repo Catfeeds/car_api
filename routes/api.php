@@ -69,6 +69,12 @@ $api->version('v1', [
         //热门商品
         $api->get('hot','ProductsController@hot')
             ->name('api.products.hot');
+        //折扣商品
+        $api->get('discounts','DiscountController@index')
+            ->name('api.discounts.index');
+        //折扣商品详情
+        $api->get('discounts/{sku_id}','DiscountController@show')
+            ->name('api.discounts.show');
 
     	//登陆可访问
     	$api->group(['middleware' => 'api.auth'], function($api) {
@@ -87,6 +93,15 @@ $api->version('v1', [
             //删除购物车数据
             $api->delete('carts','CartController@destory')
                 ->name('api.carts.destory');
+            //下订单
+            $api->post('orders','OrdersController@store')
+                ->name('api.carts.store');
+            //订单列表
+            $api->get('orders','OrdersController@index')
+                ->name('api.carts.store');
+            //订单详情
+            $api->get('orders/{order}','OrdersController@show')
+                ->name('api.carts.show');
     	});
     });
     

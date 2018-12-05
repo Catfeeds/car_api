@@ -16,4 +16,9 @@ Route::group([
     $router->resource('/shop',ShopsController::class);
     $router->resource('/product',ProductsController::class);
     $router->resource('/user',UsersController::class);
+    $router->resource('/set',SetsController::class);
+    $router->resource('/order',OrdersController::class);
+
+    //物流信息
+    $router->resource('/logistics',LogisticsController::class);
 });
