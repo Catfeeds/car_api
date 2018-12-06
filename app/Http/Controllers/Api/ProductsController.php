@@ -16,6 +16,10 @@ class ProductsController extends Controller
     	if($request->keywords){
     		$builder->where('keywords','like','%'.$request->keywords.'%');
     	}
+        if($request->limit)
+        {
+            $builder->limit($request->limit);
+        }
 
     	$products=$builder->orderBy('sort')->get();
     	return $this->response->collection($products,new ProductTransformer());
@@ -34,7 +38,12 @@ class ProductsController extends Controller
     
     public function hot(Request $request)
     {
-    	$products=Product::where(['is_sale'=>1,'is_hot'=>1])->orderBy('sort')->get();
+
+    	$builder=Product::where(['is_sale'=>1,'is_hot'=>1])->orderBy('sort');
+        if($request->limit){
+            $builder->limit($request->limit);
+        }
+        $products=$builder->get();
     	return $this->response->collection($products,new ProductTransformer());
     }
 }

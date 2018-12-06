@@ -14,6 +14,7 @@ class ProductItemTransformer extends TransformerAbstract
             'title' => $product->title,
             'banner'=>$product->banner,
             'description'=>$product->description,
+            'abstract'=>$product->abstract
         ];
     }
 }

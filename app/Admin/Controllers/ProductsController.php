@@ -158,6 +158,9 @@ class ProductsController extends Controller
         $form->select('classify_id', '所属分类')->options(classify::all()->pluck('title','id'))->rules('required',[
                     'required'=>'不能为空'
             ]);
+        $form->text('abstract','简述')->rules('required',[
+                    'required'=>'不能为空'
+            ]);
         $form->image('image', '封面图片')->rules('required',[
                     'required'=>'不能为空'
             ]);

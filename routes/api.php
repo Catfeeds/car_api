@@ -20,7 +20,7 @@ $api->version('v1', [
 ], function($api) {
 	$api->group([
 		'middleware' => 'api.throttle',
-        'limit' => config('api.rate_limits.sign.limit'),
+        'limit' => 100,
         'expires' => config('api.rate_limits.sign.expires'),
 	],function($api){
 		// 短信验证码
@@ -34,6 +34,9 @@ $api->version('v1', [
 	    // 登录 获取token
 	    $api->post('authorizations', 'AuthorizationsController@store')
     		->name('api.authorizations.store');
+        //忘记密码
+        $api->post('forget','UsersController@forget')
+            ->name('api.users.forget');
 	});
 
 	// 刷新token

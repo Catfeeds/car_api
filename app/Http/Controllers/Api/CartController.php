@@ -13,16 +13,16 @@ class CartController extends Controller
     {
     	$user=$this->user();
     	$skuId  = $request->input('sku_id');
-    	if($cart=$user->cartItems('product_sku_id', $skuId)->first())
+    	if($cart=$user->cartItems()->where('product_sku_id', $skuId)->first())
     	{
     		return $this->response->error('该商品已存在购物车',422);
     	}
 
 
-        $cart=new CartItem();
-        $cart->user()->associate($user);
-        $cart->productSku()->associate($skuId);
-        $cart->save();
+        $new_cart=new CartItem(['loan_status'=>$request->loan_status]);
+        $new_cart->user()->associate($user);
+        $new_cart->productSku()->associate($skuId);
+        $new_cart->save();
 
     }
 

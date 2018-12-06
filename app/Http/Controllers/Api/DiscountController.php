@@ -9,10 +9,13 @@ use App\Transformers\ProductItemTransformer;
 
 class DiscountController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-    	$discounts=ProductSku::where('is_discount',1)->get();
-    	
+    	$builder=ProductSku::where('is_discount',1);
+        if($request->limit){
+            $builder->limit($request->limit);
+        }
+    	$discounts=$builder->get();
     	return $this->response->collection($discounts,new DiscountTransformer());
     	
     }
