@@ -11,7 +11,9 @@ class Order extends Model
         'address',
         'total_amount',
         'ship_status',
-        'pay_status'
+        'pay_status',
+        'intention_money',
+        'loan_status'
     ];
 
     protected static function boot()

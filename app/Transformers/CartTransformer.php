@@ -12,7 +12,8 @@ class CartTransformer extends TransformerAbstract
         return [
             'id' => $cart->id,
             'sku'=>$cart->productSku()->first(['id','color','configuration','style','price']),
-            'product'=>$cart->productSku->product()->first(['id','title','image'])
+            'product'=>$cart->productSku->product()->first(['id','title','image']),
+            'loan_status'=>$cart->loan_status
         ];
     }
 }

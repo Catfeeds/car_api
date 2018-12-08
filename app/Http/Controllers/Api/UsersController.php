@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Requests\Api\UserRequest;
 use App\Transformers\UserTransformer;
-use App\Transformers\ForgetPasswordTransformer;
+use App\Http\Requests\Api\ForgetPasswordRequest;
 use App\Models\User;
 
 class UsersController extends Controller
@@ -55,7 +55,7 @@ class UsersController extends Controller
         return $this->response->item($user, new UserTransformer())->setStatusCode(200);
     }
 
-    public function forget(ForgetPasswordTransformer $request)
+    public function forget(ForgetPasswordRequest $request)
     {
         $verifyData = \Cache::get($request->verification_key);
         if (!$verifyData){

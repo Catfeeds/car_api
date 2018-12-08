@@ -34,6 +34,8 @@ $api->version('v1', [
 	    // 登录 获取token
 	    $api->post('authorizations', 'AuthorizationsController@store')
     		->name('api.authorizations.store');
+        //忘记密码验证码
+        $api->post('forget_verificationCodes','VerificationCodesController@forget_store');
         //忘记密码
         $api->post('forget','UsersController@forget')
             ->name('api.users.forget');
@@ -46,6 +48,7 @@ $api->version('v1', [
 	$api->delete('authorizations/current', 'AuthorizationsController@destroy')
     	->name('api.authorizations.destroy');
 
+    $api->any('upload','UploadController@store');
     
     $api->group([
         'middleware' => 'api.throttle',
@@ -78,6 +81,7 @@ $api->version('v1', [
         //折扣商品详情
         $api->get('discounts/{sku_id}','DiscountController@show')
             ->name('api.discounts.show');
+        
 
     	//登陆可访问
     	$api->group(['middleware' => 'api.auth'], function($api) {
@@ -105,6 +109,9 @@ $api->version('v1', [
             //订单详情
             $api->get('orders/{order}','OrdersController@show')
                 ->name('api.carts.show');
+            //购物车下单
+            $api->post('cart_to_order','CartController@cart_to_order')
+                ->name('api.cart_to_order');
     	});
     });
     

@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests\Api;
 
-use Illuminate\Foundation\Http\Request;
-
 class ForgetPasswordRequest extends Request
 {
     
@@ -17,6 +15,16 @@ class ForgetPasswordRequest extends Request
     {
         return [
             'password'=>'required|string|min:6',
+            'verification_key' => 'required|string',
+            'verification_code' => 'required|string',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'verification_key.required'=>'短信验证码已失效',
+            'verification_code.required'=>'请填写短信验证码',
             'password.required'=>'密码不能为空',
             'password.min'=>'密码最少为6位'
         ];

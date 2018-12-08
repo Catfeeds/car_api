@@ -13,7 +13,10 @@ class OrderTransformer extends TransformerAbstract
             'id' => $order->id,
             'no'=>$order->no,
             'price'=>$order->total_amount,
-            'info'=>json_decode($order->items()->first()->product_content)
+            'info'=>json_decode($order->items()->first()->product_content),
+            'intention_money'=>$order->intention_money,
+            'pay_status'=>$order->pay_status,
+            'created_at'=>date('Y-m-d',strtotime($order->created_at))
         ];
     }
 }

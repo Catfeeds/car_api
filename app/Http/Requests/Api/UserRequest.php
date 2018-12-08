@@ -16,7 +16,7 @@ class UserRequest extends Request
         switch($this->method()){
             case 'POST':
                 return [
-                    'name'=>'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name',
+                    'name'=>'required|between:3,18|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name',
                     'password'=>'required|string|min:6',
                     'verification_key' => 'required|string',
                     'verification_code' => 'required|string',
@@ -25,9 +25,8 @@ class UserRequest extends Request
 
             case 'PUT':
                 return [
-                    'name'=>'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name',
                     'username'=>'required',
-                    'id_number'=>"required",
+                    'id_number'=>'required',
                     'address'=>'required'
                 ];   
             break;
@@ -46,9 +45,13 @@ class UserRequest extends Request
     public function messages()
     {
         return [
-            'name.unique'=>'用户名已存在',
-            'verification_code.require'=>'请填写手机验证码',
+            'verification_key.required'=>'短信验证码已失效',
+            'verification_code.required'=>'请填写短信验证码',
+            'name.required'=>'请填写用户名',
             'password.required'=>'请填写密码',
+            'name.unique'=>'用户名已存在',
+            'name.between'=>'请输入3-18位用户名',
+            'name.regex'=>'用户名格式错误',
             'password.min'=>'请最少输入6位密码',
             'address.required'=>'地址不能为空',
             'username.required'=>'姓名不能为空',

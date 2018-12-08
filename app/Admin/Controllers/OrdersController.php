@@ -83,7 +83,7 @@ class OrdersController extends Controller
         $grid->model()->orderBy('created_at','desc');
         $grid->no('订单号');
         $grid->user()->username('用户');
-        $grid->intention_money('是否交意向金')->display(function($money){
+        $grid->intention_money('是否交意向金或定金')->display(function($money){
             if($money){
                 return '已交';
             }else{
@@ -169,6 +169,7 @@ class OrdersController extends Controller
         $form = new Form(new Order);
 
         $form->switch ('intention_money','意向金');
+        $form->switch('pay_status','购买金额支付');
         $ship=[
             0=>'未发货',
             1=>'已发货',
