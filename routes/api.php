@@ -39,6 +39,8 @@ $api->version('v1', [
         //忘记密码
         $api->post('forget','UsersController@forget')
             ->name('api.users.forget');
+
+
 	});
 
 	// 刷新token
@@ -59,6 +61,9 @@ $api->version('v1', [
     	//导航栏
     	$api->get('classifies','ClassifiesController@index')
     		->name('api.classifies.index');
+        $api->post('unmarried_upload','UploadsController@unmarried_upload');
+        $api->get('show_upload','UploadsController@show_upload');
+        $api->any('delete','UploadsController@destory')->name('uploads.destroy');
     	//轮播图
     	$api->get('banners','BannersController@index')
     		->name('api.banners.index');
@@ -81,7 +86,9 @@ $api->version('v1', [
         //折扣商品详情
         $api->get('discounts/{sku_id}','DiscountController@show')
             ->name('api.discounts.show');
-        
+        //订单详情
+        $api->get('orders/{order}','OrdersController@show')
+                ->name('api.carts.show');
 
     	//登陆可访问
     	$api->group(['middleware' => 'api.auth'], function($api) {
@@ -106,9 +113,7 @@ $api->version('v1', [
             //订单列表
             $api->get('orders','OrdersController@index')
                 ->name('api.carts.store');
-            //订单详情
-            $api->get('orders/{order}','OrdersController@show')
-                ->name('api.carts.show');
+            
             //购物车下单
             $api->post('cart_to_order','CartController@cart_to_order')
                 ->name('api.cart_to_order');

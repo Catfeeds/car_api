@@ -18,7 +18,7 @@ class OrdersController extends Controller
     	
     	if(!$user->address || !$user->id_number || !$user->username)
     	{
-    		return $this->response->error('请先完善个人信息',422);
+    		return $this->response->error('请先完善个人信息',403);
     	}
 
     	$sku_id=$request->sku_id;

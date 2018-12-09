@@ -83,7 +83,7 @@ class OrdersController extends Controller
         $grid->model()->orderBy('created_at','desc');
         $grid->no('订单号');
         $grid->user()->username('用户');
-        $grid->intention_money('是否交意向金或定金')->display(function($money){
+        $grid->intention_money('定金/意向金')->display(function($money){
             if($money){
                 return '已交';
             }else{
@@ -149,7 +149,35 @@ class OrdersController extends Controller
         $show->user()->id_number('身份证号');
         $show->user()->phone('电话');
         $show->divider();
+        
         $show->total_amount('价格');
+        $show->items('商品详情')->first()->product_content()->as(function($content){
+            $content=$content->toArray();
+            $content=json_decode($content[0]['product_content']);
+            $str='车辆：'.$content->product_info->title."\n 规格：".$content->sku_info->color.$content->sku_info->configuration.$content->sku_info->style;
+            return $str;
+        });
+        $show->divider();
+        $show->loan_status('是否贷款')->as(function($status){
+            switch ($status) {
+                case 0:
+                    return '无贷款';
+                break;
+                case 1:
+                    return '贷款80%';
+                break;
+                case 2:
+                    return '贷款90%';
+                break;
+            }
+        });
+        $show->intention_money('定金/意向金')->as(function($money){
+            if($money){
+                return '已交';
+            }else{
+                return '未交';
+            }
+        });
         $show->panel()
             ->tools(function ($tools) {
                 $tools->disableEdit();
