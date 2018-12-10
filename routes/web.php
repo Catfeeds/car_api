@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/loan_show','\App\Admin\Controllers\LoanShowController@index');

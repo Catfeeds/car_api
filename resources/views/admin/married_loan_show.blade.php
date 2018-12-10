@@ -43,10 +43,7 @@
 <!-- Wrapper -->
 <div id="wrapper" class="wrapper">
 
-    <!-- Header -->
-    <header class="header chasmishco_header">
 
-    </header>
 
 
 
@@ -59,7 +56,7 @@
                 <label for="id_card" class="col-sm-2 control-label no-padding-right">双方身份证上传:</label>
                 <div class="col-sm-6">
                     <!--<input class="file form-control" placeholder="" name="images[]" type="file" id="img" multiple>-->
-                    <input id="id_card" type="file" multiple class="file" data-overwrite-initial="false" name="id_card">
+                    <input id="id_card" type="file" multiple class="file" data-overwrite-initial="false" name="id_card" disabled>
                 </div>
             </div>
         </div>
@@ -71,7 +68,7 @@
                 <label for="reputation" class="col-sm-2 control-label no-padding-right">双方征信上传:</label>
                 <div class="col-sm-6">
                     <!--<input class="file form-control" placeholder="" name="images[]" type="file" id="img" multiple>-->
-                    <input id="reputation" type="file" multiple class="file" data-overwrite-initial="false" name="reputation">
+                    <input id="reputation" type="file" multiple class="file" data-overwrite-initial="false" name="reputation" disabled>
                 </div>
             </div>
         </div>
@@ -83,7 +80,7 @@
                 <label for="flowing" class="col-sm-2 control-label no-padding-right">双反流水上传:</label>
                 <div class="col-sm-6">
                     <!--<input class="file form-control" placeholder="" name="images[]" type="file" id="img" multiple>-->
-                    <input id="flowing" type="file" multiple class="file" data-overwrite-initial="false" name="flowing">
+                    <input id="flowing" type="file" multiple class="file" data-overwrite-initial="false" name="flowing" disabled>
                 </div>
             </div>
         </div>
@@ -96,7 +93,7 @@
                 <label for="household" class="col-sm-2 control-label no-padding-right">双方户主页和本人页上传:</label>
                 <div class="col-sm-6">
                     <!--<input class="file form-control" placeholder="" name="images[]" type="file" id="img" multiple>-->
-                    <input id="household" type="file" multiple class="file" data-overwrite-initial="false" name="household">
+                    <input id="household" type="file" multiple class="file" data-overwrite-initial="false" name="household" disabled>
                 </div>
             </div>
         </div>
@@ -109,7 +106,7 @@
                 <label for="driver" class="col-sm-2 control-label no-padding-right">驾驶证/结婚证上传:</label>
                 <div class="col-sm-6">
                     <!--<input class="file form-control" placeholder="" name="images[]" type="file" id="img" multiple>-->
-                    <input id="driver" type="file" multiple class="file" data-overwrite-initial="false" name="driver">
+                    <input id="driver" type="file" multiple class="file" data-overwrite-initial="false" name="driver" disabled>
                 </div>
             </div>
         </div>
@@ -137,7 +134,7 @@
                 <label for="income" class="col-sm-2 control-label no-padding-right">收入证明（营业执照）上传:</label>
                 <div class="col-sm-6">
                     <!--<input class="file form-control" placeholder="" name="images[]" type="file" id="img" multiple>-->
-                    <input id="income" type="file" multiple class="file" data-overwrite-initial="false" name="income">
+                    <input id="income" type="file" multiple class="file" data-overwrite-initial="false" name="income" disabled>
                 </div>
             </div>
         </div>
@@ -150,7 +147,7 @@
                 <label for="house" class="col-sm-2 control-label no-padding-right">房产证或购房合同（四角齐全字迹清晰照片即可）上传:</label>
                 <div class="col-sm-6">
                     <!--<input class="file form-control" placeholder="" name="images[]" type="file" id="img" multiple>-->
-                    <input id="house" type="file" multiple class="file" data-overwrite-initial="false" name="house">
+                    <input id="house" type="file" multiple class="file" data-overwrite-initial="false" name="house" disabled>
                 </div>
             </div>
         </div>
@@ -167,7 +164,7 @@
                 <label for="g_id_card" class="col-sm-2 control-label no-padding-right">担保人身份证上传:</label>
                 <div class="col-sm-6">
                     <!--<input class="file form-control" placeholder="" name="images[]" type="file" id="img" multiple>-->
-                    <input id="g_id_card" type="file" multiple class="file" data-overwrite-initial="false" name="g_id_card">
+                    <input id="g_id_card" type="file" multiple class="file" data-overwrite-initial="false" name="g_id_card" disabled>
                 </div>
             </div>
         </div>
@@ -179,7 +176,7 @@
                 <label for="g_reputation" class="col-sm-2 control-label no-padding-right">担保人征信上传:</label>
                 <div class="col-sm-6">
                     <!--<input class="file form-control" placeholder="" name="images[]" type="file" id="img" multiple>-->
-                    <input id="g_reputation" type="file" multiple class="file" data-overwrite-initial="false" name="g_reputation">
+                    <input id="g_reputation" type="file" multiple class="file" data-overwrite-initial="false" name="g_reputation" disabled>
                 </div>
             </div>
         </div>
@@ -191,7 +188,7 @@
                 <label for="g_flowing" class="col-sm-2 control-label no-padding-right">担保人流水上传:</label>
                 <div class="col-sm-6">
                     <!--<input class="file form-control" placeholder="" name="images[]" type="file" id="img" multiple>-->
-                    <input id="g_flowing" type="file" multiple class="file" data-overwrite-initial="false" name="g_flowing">
+                    <input id="g_flowing" type="file" multiple class="file" data-overwrite-initial="false" name="g_flowing" disabled>
                 </div>
             </div>
         </div>
@@ -204,7 +201,7 @@
                 <label for="g_household" class="col-sm-2 control-label no-padding-right">担保人户主页和本人页上传:</label>
                 <div class="col-sm-6">
                     <!--<input class="file form-control" placeholder="" name="images[]" type="file" id="img" multiple>-->
-                    <input id="g_household" type="file" multiple class="file" data-overwrite-initial="false" name="g_household">
+                    <input id="g_household" type="file" multiple class="file" data-overwrite-initial="false" name="g_household" disabled>
                 </div>
             </div>
         </div>
@@ -217,7 +214,7 @@
                 <label for="g_driver" class="col-sm-2 control-label no-padding-right">担保人驾驶证上传:</label>
                 <div class="col-sm-6">
                     <!--<input class="file form-control" placeholder="" name="images[]" type="file" id="img" multiple>-->
-                    <input id="g_driver" type="file" multiple class="file" data-overwrite-initial="false" name="g_driver">
+                    <input id="g_driver" type="file" multiple class="file" data-overwrite-initial="false" name="g_driver" disabled>
                 </div>
             </div>
         </div>
@@ -231,7 +228,7 @@
                 <label for="g_divorce" class="col-sm-2 control-label no-padding-right">担保人结婚证/离婚证证明上传:</label>
                 <div class="col-sm-6">
                     <!--<input class="file form-control" placeholder="" name="images[]" type="file" id="img" multiple>-->
-                    <input id="g_divorce" type="file" multiple class="file" data-overwrite-initial="false" name="g_divorce">
+                    <input id="g_divorce" type="file" multiple class="file" data-overwrite-initial="false" name="g_divorce" disabled>
                 </div>
             </div>
         </div>
@@ -245,7 +242,7 @@
                 <label for="g_income" class="col-sm-2 control-label no-padding-right">担保人收入证明（营业执照）上传:</label>
                 <div class="col-sm-6">
                     <!--<input class="file form-control" placeholder="" name="images[]" type="file" id="img" multiple>-->
-                    <input id="g_income" type="file" multiple class="file" data-overwrite-initial="false" name="g_income">
+                    <input id="g_income" type="file" multiple class="file" data-overwrite-initial="false" name="g_income" disabled>
                 </div>
             </div>
         </div>
@@ -258,7 +255,7 @@
                 <label for="g_house" class="col-sm-2 control-label no-padding-right">担保人房产证或购房合同（四角齐全字迹清晰照片即可）上传:</label>
                 <div class="col-sm-6">
                     <!--<input class="file form-control" placeholder="" name="images[]" type="file" id="img" multiple>-->
-                    <input id="g_house" type="file" multiple class="file" data-overwrite-initial="false" name="g_house">
+                    <input id="g_house" type="file" multiple class="file" data-overwrite-initial="false" name="g_house" disabled>
                 </div>
             </div>
         </div>
@@ -270,22 +267,23 @@
 
 
 
-    <footer class="footer_area">
-
-    </footer>
-    <!-- End Footer Area -->
+    
 
 
 </div>
 
 
-<link rel="stylesheet" type="text/css" href="{{access('loan/file/bootstrap/css/bootstrap.min.css')}}">
-<link rel="stylesheet" type="text/css" href="{{access('loan/file/fileinput.min.css')}}">
-<script type="text/javascript" src="{{access('loan/file/jquery-2.0.3.min.js')}}"></script>
-<script type="text/javascript" src="{{access('loan/file/bootstrap/js/bootstrap.min.js')}}"></script>
-<script type="text/javascript" src="{{access('loan/file/fileinput.min.js')}}"></script>
-<script type="text/javascript" src="{{access('loan/file/slef.js')}}"></script>
-<script type="text/javascript" src="{{access('loan/file/zh.js')}}"></script>
+<script type="text/javascript" src="{{asset('loan/file/jquery-2.0.3.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('loan/file/bootstrap/js/bootstrap.min.js')}}"></script>
+
+
+<link href="http://www.jq22.com/jquery/bootstrap-3.3.4.css" rel="stylesheet">
+<link href="{{asset('loan/submit/css/fileinput.css')}}" media="all" rel="stylesheet" type="text/css" />
+<script src="{{asset('loan/submit/js/fileinput.js')}}" type="text/javascript"></script>
+
+
+<script src="{{asset('loan/submit/js/locales/zh.js')}}" type="text/javascript"></script>
+<script>
 <script>
     // 初始化多图上传
     function init_multiple(id,initialPreview,initialPreviewConfig,order_id)
@@ -304,9 +302,15 @@
             initialPreview: initialPreview,
             initialPreviewConfig: initialPreviewConfig,
             showType:'detail',
+            showUpload:false, //是否显示上传按钮
+            showRemove :false, //显示移除按钮
             layoutTemplates :{
                 actionUpload:'',//去除上传预览缩略图中的上传图片
+                actionDelete:'', //去除上传预览的缩略图中的删除图标
             },
+            previewSettings: {
+                image: {width: "100px", height: "100px"}
+            }
 
         });
     }

@@ -22,7 +22,7 @@ class LoanShowController extends Controller
     public function index(Content $content,Request $request)
     {
         $order_id=$request->order_id;
-        $upload=Upload::find([
+        $upload=Upload::where([
                 'order_id'=>$order_id,
                 'type'=>0
             ])->first();

@@ -190,7 +190,7 @@ class OrdersController extends Controller
             if($loan_status==0){
                 return '无贷款';
             }else{
-                return "<a href='".env('APP_URL')."/admin/loan_show?order_id=".$id."'>点击查看</a>";
+                return "<a href='".env('APP_URL')."/loan_show?order_id=".$id."'>点击查看</a>";
             }
         });
         $show->panel()
