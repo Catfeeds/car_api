@@ -178,11 +178,27 @@ class OrdersController extends Controller
                 return '未交';
             }
         });
+        $show->pay_status('剩余金额')->as(function($money){
+            if($money){
+                return '已交';
+            }else{
+                return '未交';
+            }
+        });
+        $show->divider();
+        $show->loan_status('贷款详情')->unescape()->as(function($loan_status) use ($id){
+            if($loan_status==0){
+                return '无贷款';
+            }else{
+                return "<a href='".env('APP_URL')."/admin/loan_show?order_id=".$id."'>点击查看</a>";
+            }
+        });
         $show->panel()
             ->tools(function ($tools) {
-                $tools->disableEdit();
                 $tools->disableDelete();
+                
             });
+        
 
         return $show;
     }

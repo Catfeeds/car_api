@@ -214,17 +214,20 @@ class ProductsController extends Controller
         });
         $form->saving(function (Form $form) {
             $skus=$form->input('skus');
-            foreach ($skus as $k => $v) {
-                if($v['discount_price'] && $v['price']*0.98>$v['discount_price']){
-                    $error = new MessageBag([
-                        'title'   => '错误信息',
-                        'message' => '折扣价不应小于现价的2%',
-                    ]);
+            if($skus){
+                foreach ($skus as $k => $v) {
+                    if($v['discount_price'] && $v['price']*0.98>$v['discount_price']){
+                        $error = new MessageBag([
+                            'title'   => '错误信息',
+                            'message' => '折扣价不应小于现价的2%',
+                        ]);
 
-                    return back()->with(compact('error'));
-                    
+                        return back()->with(compact('error'));
+                        
+                    }
                 }
             }
+            
             $form->model()->price = collect($form->input('skus'))->where(Form::REMOVE_FLAG_NAME, 0)->min('price') ?: 0;
         });
         return $form;

@@ -21,4 +21,7 @@ Route::group([
 
     //物流信息
     $router->resource('/logistics',LogisticsController::class);
+
+    //贷款详情
+    $router->get('/loan_show','LoanShowController@index');
 });

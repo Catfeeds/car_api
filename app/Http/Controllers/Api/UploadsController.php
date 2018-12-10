@@ -23,7 +23,7 @@ class UploadsController extends Controller
     	if($request->isMethod('post'))
         {
         	$name=$request->name;
-        	$order_id=$request->orer_id;
+        	$order_id=$request->order_id;
         	return $this->upload_image($request,$name,$order_id,1);
             
         }
@@ -44,7 +44,7 @@ class UploadsController extends Controller
         ])->get();
         if($images){
             foreach ($images as $k => $v) {
-                $arr['images'][]="<img src='".env('APP_URL')."/uploads/".$v->image."' style='height:auto; max-width: 100%; max-height: 100%; margin-top: 0px;'>";
+                $arr['images'][]="<img src='".env('APP_URL')."/uploads/".$v->image."'>";
                 $arr['delete'][]=['url'=>env('APP_URL').'/api/delete?id='.$v->id];
             }
         }
@@ -56,8 +56,14 @@ class UploadsController extends Controller
     public function destory(Request $request)
     {
         $upload_id=$request->id;
-        Upload::find($upload_id)->delete();
-       return response()->json(['status'=>true],200);
+        $upload=Upload::find($upload_id);
+        $file_url=env('APP_URL').'/uploads/'.$upload->image;
+        if(file_exists($file_url)){
+            @unlink($file_url);
+        }
+        $upload->delete();
+
+        return response()->json(['status'=>true],200);
     }
 
     

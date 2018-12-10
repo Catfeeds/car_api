@@ -26,7 +26,10 @@ class UserRequest extends Request
             case 'PUT':
                 return [
                     'username'=>'required',
-                    'id_number'=>'required',
+                    'id_number'=>[
+                            'required',
+                            'regex:/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/',
+                        ],
                     'address'=>'required'
                 ];   
             break;
@@ -56,7 +59,7 @@ class UserRequest extends Request
             'address.required'=>'地址不能为空',
             'username.required'=>'姓名不能为空',
             'id_number.required'=>'身份证号不能为空',
-            'id_number.regex'=>'身份证号格式不正确'
+            'id_number.regex'=>'身份证号格式不正确',
         ];
     }
 }

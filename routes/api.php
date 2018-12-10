@@ -61,10 +61,13 @@ $api->version('v1', [
     	//导航栏
     	$api->get('classifies','ClassifiesController@index')
     		->name('api.classifies.index');
+        
         $api->post('unmarried_upload','UploadsController@unmarried_upload');
+        $api->post('married_upload','UploadsController@married_upload');
         $api->get('show_upload','UploadsController@show_upload');
         $api->any('delete','UploadsController@destory')->name('uploads.destroy');
-    	//轮播图
+    	
+        //轮播图
     	$api->get('banners','BannersController@index')
     		->name('api.banners.index');
     	//门店列表
