@@ -12,7 +12,7 @@ class ShopTransformer extends TransformerAbstract
         return [
             'id' => $shop->id,
             'name' => $shop->name,
-            'image'=>$shop->image,
+            'image'=>env('APP_URL').'/uploads/'.$shop->image,
         ];
     }
 }

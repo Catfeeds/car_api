@@ -47,7 +47,7 @@ $api->version('v1', [
 	$api->put('authorizations/current', 'AuthorizationsController@update')
     	->name('api.authorizations.update');
 	// 删除token
-	$api->delete('authorizations/current', 'AuthorizationsController@destroy')
+	$api->delete('authorizations', 'AuthorizationsController@destroy')
     	->name('api.authorizations.destroy');
 
     $api->any('upload','UploadController@store');

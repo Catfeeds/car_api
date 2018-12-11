@@ -12,7 +12,7 @@ class ProductTransformer extends TransformerAbstract
         return [
             'id' => $product->id,
             'title' => $product->title,
-            'image'=>$product->image,
+            'image'=>env('APP_URL').'/uploads/'.$product->image,
             'price'=>$product->price,
             'abstract'=>$product->abstract
         ];

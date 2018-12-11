@@ -34,7 +34,7 @@ class DiscountController extends Controller
     public function show(Request $request)
     {
     	$product=Product::find($request->sku_id);
-        $product_skus=$product->skus()->where('is_discount',1)->get(['id','color','configuration','style','foreign_price','rate','price','discount_price'])->toArray();
+        $product_skus=$product->skus()->where('is_discount',1)->get(['id','color','configuration','style','price','discount_price'])->toArray();
         
         return $this->response->item($product,new ProductItemTransformer())
             ->setMeta($product_skus);

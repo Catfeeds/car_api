@@ -129,6 +129,9 @@ class ClassifiesController extends Controller
         $form->text('title', '标题')->rules('required',[
                     'required'=>'不能为空'
             ]);
+        $form->image('image','图标')->rules('required',[
+                    'required'=>'不能为空'
+            ]);
         $form->number('sort', '排序')->default(50);
         $form->switch('is_show', '是否展示')->default(0);
         $form->tools(function (Form\Tools $tools) {

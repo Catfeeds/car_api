@@ -18,6 +18,17 @@ class ShopsController extends Controller
     {
     	$shop_id=$request->shop;
     	$shop=Shop::find($shop_id);
+        $shop->banner=$this->format_banner($shop->banner);
     	return $this->response->array($shop);
+    }
+
+    private function format_banner($banner)
+    {
+       
+        foreach ($banner as $k => $v) {
+            $banner[$k]=env('APP_URL').'/uploads/'.$v;
+        }
+
+        return $banner;
     }
 }

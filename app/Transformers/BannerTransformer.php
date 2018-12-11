@@ -12,7 +12,7 @@ class BannerTransformer extends TransformerAbstract
         return [
             'id' => $banner->id,
             'title' => $banner->title,
-            'image'=>$banner->image
+            'image'=>env('APP_URL').'/uploads/'.$banner->image
         ];
     }
 }

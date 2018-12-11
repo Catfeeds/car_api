@@ -12,6 +12,7 @@ class ClassifyTransformer extends TransformerAbstract
         return [
             'id' => $classify->id,
             'title' => $classify->title,
+            'image'=>env('APP_URL').'/uploads/'.$classify->image
         ];
     }
 }

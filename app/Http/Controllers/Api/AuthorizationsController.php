@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Api\AuthorizationRequest;
 use App\Transformers\UserTransformer;
 use App\Models\User;
+use Auth;
 
 class AuthorizationsController extends Controller
 {

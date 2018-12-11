@@ -10,6 +10,7 @@ use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 use App\Models\classify;
+use App\Models\ProductSku;
 use Illuminate\Support\MessageBag;
 
 class ProductsController extends Controller
@@ -216,15 +217,25 @@ class ProductsController extends Controller
             $skus=$form->input('skus');
             if($skus){
                 foreach ($skus as $k => $v) {
-                    if($v['discount_price'] && $v['price']*0.98>$v['discount_price']){
-                        $error = new MessageBag([
-                            'title'   => '错误信息',
-                            'message' => '折扣价不应小于现价的2%',
-                        ]);
+                   if($v['id']){
+                        $sku=ProductSku::find($v['id']);
+                        if($v['price']>$sku->price*1.02 || $v['price']<$sku->price*0.98){
+                            $error = new MessageBag([
+                                'title'   => '错误信息',
+                                'message' => '修改价格不应超过现价的2%',
+                            ]);
 
-                        return back()->with(compact('error'));
-                        
-                    }
+                            return back()->with(compact('error'));
+                        }
+                        if($v['discount_price']>$sku->discount_price*1.02 || $v['discount_price']<$sku->discount_price*0.98){
+                            $error = new MessageBag([
+                                'title'   => '错误信息',
+                                'message' => '修改折扣价格不应超过现价的2%',
+                            ]);
+
+                            return back()->with(compact('error'));
+                        }
+                   }
                 }
             }
             

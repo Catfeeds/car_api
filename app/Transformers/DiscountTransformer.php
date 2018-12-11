@@ -12,7 +12,7 @@ class DiscountTransformer extends TransformerAbstract
         return [
             'id' => $product->id,
             'title'=>$product->title,
-            'image'=>$product->image,
+            'image'=>env('APP_URL').'/uploads/'.$product->image,
             'price'=>$product->skus()->first()->price,
             'discount_price'=>$product->skus()->first()->discount_price,
         ];
