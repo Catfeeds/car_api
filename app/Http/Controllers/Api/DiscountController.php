@@ -22,7 +22,7 @@ class DiscountController extends Controller
             return $this->response->collection($discounts,new DiscountTransformer());
         }else{
 
-            $discounts=$builder->paginate(4);
+            $discounts=$builder->paginate(10);
             return $this->response->paginator($discounts,new DiscountTransformer());
         }
         

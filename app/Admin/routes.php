@@ -18,6 +18,7 @@ Route::group([
     $router->resource('/user',UsersController::class);
     $router->resource('/set',SetsController::class);
     $router->resource('/order',OrdersController::class);
+    $router->resource('/adsense',AdsensesController::class);
 
     //物流信息
     $router->resource('/logistics',LogisticsController::class);

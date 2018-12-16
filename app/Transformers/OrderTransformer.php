@@ -16,7 +16,8 @@ class OrderTransformer extends TransformerAbstract
             'info'=>json_decode($order->items()->first()->product_content),
             'intention_money'=>$order->intention_money,
             'pay_status'=>$order->pay_status,
-            'created_at'=>date('Y-m-d',strtotime($order->created_at))
+            'loan_status'=>$order->loan_status,
+            'created_at'=>date('Y-m-d',strtotime($order->created_at)),
         ];
     }
 }

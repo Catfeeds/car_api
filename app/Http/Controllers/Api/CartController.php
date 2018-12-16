@@ -82,7 +82,7 @@ class CartController extends Controller
             'product_info'=>[
                 'title'=>$sku->product->title,
                 'id'=>$sku->product->id,
-                'image'=>$sku->product->image
+                'image'=>env('APP_URL').'/uploads/'.$sku->product->image
             ]
         ];
 

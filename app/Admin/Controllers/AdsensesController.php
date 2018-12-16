@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\Set;
+use App\Models\Adsense;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
@@ -10,7 +10,7 @@ use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 
-class SetsController extends Controller
+class AdsensesController extends Controller
 {
     use HasResourceActions;
 
@@ -23,7 +23,7 @@ class SetsController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('设置')
+            ->header('广告位')
             ->description('列表')
             ->body($this->grid());
     }
@@ -38,8 +38,8 @@ class SetsController extends Controller
     public function show($id, Content $content)
     {
         return $content
-            ->header('Detail')
-            ->description('description')
+            ->header('广告位')
+            ->description('展示')
             ->body($this->detail($id));
     }
 
@@ -53,8 +53,8 @@ class SetsController extends Controller
     public function edit($id, Content $content)
     {
         return $content
-            ->header('设置')
-            ->description('.')
+            ->header('广告位')
+            ->description('修改')
             ->body($this->form()->edit($id));
     }
 
@@ -67,8 +67,8 @@ class SetsController extends Controller
     public function create(Content $content)
     {
         return $content
-            ->header('Create')
-            ->description('description')
+            ->header('广告位')
+            ->description('新增')
             ->body($this->form());
     }
 
@@ -79,28 +79,24 @@ class SetsController extends Controller
      */
     protected function grid()
     {
-        $grid = new Grid(new Set);
+        $grid = new Grid(new Adsense);
 
-         $grid->column('redirector', '说明')->display(function () {
-                return <<<CODEEND
-新用户请点击新建按钮，如果长时间未跳转，请点击右侧的编辑按钮
-<script>
-$(document).ready(function () {
-    $('.fa-edit').each(function (i, item) {
-        $(item).click();
-        return;
-    });
-});
-</script>
-CODEEND;
-        });
-        $grid->disableRowSelector();
-        $grid->disableFilter();
+        $grid->model()->orderBy('sort', 'asc');
+        //$grid->id('Id');
+        $grid->title('标题');
+        //$grid->image('图片');
+        $grid->sort('排序');
+        $grid->is_show('是否展示')->switch();
         $grid->disableExport();
-        $grid->actions(function($action) {
-            $action->disableDelete();
+        $grid->filter(function($filter){
+            $filter->disableIdFilter();
+            $filter->like('title', '标题');
         });
-        $grid->disablePagination();
+        $grid->actions(function ($actions) {
+                $actions->disableView();
+            });
+        // $grid->created_at('Created at');
+        // $grid->updated_at('Updated at');
 
         return $grid;
     }
@@ -113,14 +109,13 @@ CODEEND;
      */
     protected function detail($id)
     {
-        $show = new Show(Set::findOrFail($id));
+        $show = new Show(Adsense::findOrFail($id));
 
         $show->id('Id');
-        $show->all_customer_phone('All customer phone');
-        $show->email('Email');
-        $show->account('Account');
-        $show->loan_phone('Loan phone');
-        $show->no_loan_phone('No loan phone');
+        $show->title('Title');
+        $show->image('Image');
+        $show->sort('Sort');
+        $show->is_show('Is show');
         $show->created_at('Created at');
         $show->updated_at('Updated at');
 
@@ -134,17 +129,17 @@ CODEEND;
      */
     protected function form()
     {
-        $form = new Form(new Set);
+        $form = new Form(new Adsense);
 
-        $form->text('all_customer_phone', '总客服电话');
-        $form->email('email', '邮箱');
-        $form->text('account', '打款账户');
-        $form->text('loan_phone', '贷款电话');
-        $form->text('no_loan_phone', '无贷款电话');
-        $form->image('qq_image','qq二维码');
-        $form->image('wx_image','微信二维码');
-
-         $form->tools(function (Form\Tools $tools) {
+        $form->text('title', '标题')->rules('required',[
+                    'required'=>'不能为空'
+            ]);
+        $form->image('image', '图片')->rules('required',[
+                    'required'=>'不能为空'
+            ]);
+        $form->number('sort', '排序')->default(50);
+        $form->switch('is_show', '是否展示')->default(0);
+        $form->tools(function (Form\Tools $tools) {
 
 
             // 去掉`删除`按钮
@@ -167,6 +162,7 @@ CODEEND;
             $footer->disableCreatingCheck();
 
         });
+
 
         return $form;
     }

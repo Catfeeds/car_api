@@ -70,6 +70,9 @@ $api->version('v1', [
         //轮播图
     	$api->get('banners','BannersController@index')
     		->name('api.banners.index');
+        //广告位图片
+        $api->get('adsenses','AdsensesController@index')
+            ->name('api.adsenses.index');
     	//门店列表
     	$api->get('shops','ShopsController@index')
     		->name('api.shops.index');
@@ -92,6 +95,14 @@ $api->version('v1', [
         //订单详情
         $api->get('orders/{order}','OrdersController@show')
                 ->name('api.carts.show');
+
+        //推荐商品
+        $api->get('like','ProductsController@like')
+            ->name('api.products.like');
+        //关于我们
+        $api->get('about','AboutsController@index');
+        //联系我们
+        $api->get('contact','AboutsController@contact');
 
     	//登陆可访问
     	$api->group(['middleware' => 'api.auth'], function($api) {

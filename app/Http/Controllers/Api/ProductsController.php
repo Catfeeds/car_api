@@ -25,7 +25,7 @@ class ProductsController extends Controller
             $products=$builder->orderBy('sort')->get();
             return $this->response->collection($products,new ProductTransformer());
         }else{
-            $products=$builder->orderBy('sort')->paginate(4);
+            $products=$builder->orderBy('sort')->paginate(10);
             return $this->response->paginator($products,new ProductTransformer());
         }
 
@@ -55,9 +55,29 @@ class ProductsController extends Controller
             $products=$builder->get();
             return $this->response->collection($products,new ProductTransformer());
         }else{
-            $products=$builder->paginate(4);
+            $products=$builder->paginate(10);
              return $this->response->paginator($products, new ProductTransformer());
         }
         
+    }
+
+    public function like(Request $request)
+    {
+        $limit=$request->limit ?: 3;
+        $builder=Product::where('id','>',0)->whereHas('skus',function($query){
+            return $query->where('is_discount',0);
+        });
+        
+        if($request->classify_id)
+        {
+            $builder->where('classify_id',$request->classify_id);
+        }else{
+            $builder->where('is_hot',1);
+        }
+
+        $products=$builder->orderBy(\DB::raw('RAND()'))->limit($limit)->get();
+
+        return $this->response->collection($products,new ProductTransformer());
+
     }
 }
